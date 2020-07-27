@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
+import { ToursModule } from './tours/tours.module';
 
 
 
@@ -16,7 +18,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     useCreateIndex: true,
     useFindAndModify: true,
     useUnifiedTopology: true
-  })],
+  }), ToursModule],
   controllers: [AppController],
   providers: [AppService],
 })
