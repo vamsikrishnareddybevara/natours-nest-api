@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema()
+@Schema({ toJSON: { virtuals: true }, toObject: { virtuals: true } })
 export class Tour extends Document {
   @Prop({
     required: [true, 'A tour must have a name'],
@@ -69,6 +69,9 @@ export class Tour extends Document {
 
   @Prop({ type: Date, default: Date.now(), select: false })
   createdAt: Date;
+
+  @Prop([Date])
+  startDates: [Date];
 }
 
-export const CatSchema = SchemaFactory.createForClass(Tour);
+export const TourSchema = SchemaFactory.createForClass(Tour);
